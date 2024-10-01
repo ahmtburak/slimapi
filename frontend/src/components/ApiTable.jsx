@@ -15,13 +15,16 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useModal } from "../context/ModalContext";
+import ConfirmModal from "./ConfirmModal";
+import { toast } from "react-hot-toast";
 
 export default function ApiTable() {
   const [apiData, setApiData] = useState(null);
   const [apiDataLength, setApiDataLength] = useState(0);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  const { handleOpen } = useModal();
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -40,6 +43,7 @@ export default function ApiTable() {
         setApiDataLength(response.data.length);
       } catch (error) {
         console.error("API'den veri çekerken hata oluştu:", error);
+        toast.error("Veri yüklenirken bir hata oluştu.");
       }
     };
 
@@ -49,6 +53,17 @@ export default function ApiTable() {
   const filteredData = apiData
     ? apiData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
     : [];
+
+  const handleDelete = async (row) => {
+    try {
+      await axios.delete(`http://localhost:8888/posts/${row.id}`);
+      setApiData((prevData) => prevData.filter((item) => item.id !== row.id));
+      toast.success("Veri başarıyla silindi.");
+    } catch (error) {
+      console.error("API silme isteğinde bir hata oluştu:", error);
+      toast.error("API silme isteğinde bir hata oluştu.");
+    }
+  };
   return (
     <Box>
       <TableContainer component={Paper}>
@@ -74,7 +89,11 @@ export default function ApiTable() {
                   <TableCell>{row.title}</TableCell>
                   <TableCell>{row.body}</TableCell>
                   <TableCell>
-                    <IconButton variant="outlined" color="error">
+                    <IconButton
+                      variant="outlined"
+                      color="error"
+                      onClick={() => handleOpen(row)}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
@@ -95,6 +114,7 @@ export default function ApiTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <ConfirmModal onConfirm={handleDelete} />
     </Box>
   );
 }
