@@ -14,9 +14,9 @@ Controller ve Modal sistemi kullanarak kodların daha düzenli olmasını sağla
 Tabloda silme işlemine modal ekleyerek kullanıcı hatalarını bir nebze olarak engelledim. Silme işlemi başarılı olunca toast yazdırıyoruz.
 Çok fazla veri bulunduğu için de pagination sistemi ekleyerek tablonun daha düzenli gözükmesini sağladım.
 ### Modal
-<img src="https://i.hizliresim.com/g8k00vl.png">>
+<img src="https://i.hizliresim.com/g8k00vl.png"/>
 ### Toast
-<img src="https://i.hizliresim.com/fgrwfje.png" >>
+<img src="https://i.hizliresim.com/fgrwfje.png" />
 ### Pagination
 <img src="https://i.hizliresim.com/c09u8r0.png" >
 
