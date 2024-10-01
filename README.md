@@ -8,6 +8,8 @@ Merhaba, uygulamamızın ana sayfası açıldığında bu şekilde gözüküyor.
 <br>
 İstek attığımız API'den gelen veri daha önceden veritabanımıza eklendiyse eklenmesin diye bir kontrol koydum.
 Eğer aynı id'ye sahip gönderiler gelirse mevcut olan veri ve eklenen veriyi yazdırıyor. 2 API için de bu kontrolü sağlıyorum.
+<br>
+<br>
 Controller ve Modal sistemi kullanarak kodların daha düzenli olmasını sağladım.
 <img src="https://i.hizliresim.com/l6gxct2.png">
 
