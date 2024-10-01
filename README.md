@@ -14,7 +14,6 @@ Controller ve Modal sistemi kullanarak kodların daha düzenli olmasını sağla
 <br>
 ### Conroller, Modal ve Index
 <br>
-<br>
 <img src="https://i.hizliresim.com/l6gxct2.png">
 
 ## Frontend
