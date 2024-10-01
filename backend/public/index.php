@@ -99,12 +99,41 @@ $app->get('/getData', function (Request $request, Response $response, $args) {
     die("Veritabanına bağlanamadı: " . $e->getMessage());
   }
 
-  $sql = 'SELECT  users.username,posts.title, posts.body,posts.id  FROM posts INNER JOIN users ON posts.userId =users.id';
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $results = json_encode($results);
-  $response->getBody()->write($results);
+  // Veri çekme işlemi için kontrol ekliyoruz. Sonucu yazdırıyoruz.
+  try {
+    $sql = 'SELECT  users.username,posts.title, posts.body,posts.id  FROM posts INNER JOIN users ON posts.userId =users.id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = json_encode($results);
+    $response->getBody()->write($results);
+  } catch (PDOException $e) {
+    $response->getBody()->write('Veritabanından veri çekerken bir hata oluştu' . $e->getMessage());
+  }
+
+  return $response->withHeader('Content-Type', 'application/json');
+});
+
+$app->delete('/posts/{id}', function (Request $request, Response $response, $args) {
+  $database = new Database;
+
+  //Veritabanına bağlantı kontrolü yapıyoruz. Hata varsa yazdırıyoruz
+  try {
+    $pdo = $database->getConnection();
+  } catch (PDOException $e) {
+    die("Veritabanına bağlanamadı: " . $e->getMessage());
+  }
+  $postId = $args['id'];
+  // Silme işlemi için try-catch atarak kontrol yapıyoruz.
+  try {
+    $sql = 'DELETE FROM posts WHERE id = ?';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$postId]);
+    $response->getBody()->write('Silme işlemi başarılı.');
+  } catch (PDOException $e) {
+    $response->getBody()->write('Silme işleminde bir hata oluştu. ' . $e->getMessage());
+  }
+
   return $response->withHeader('Content-Type', 'application/json');
 });
 
