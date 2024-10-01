@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: http://localhost:5173');
 
 use App\Database;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -88,7 +89,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
   return $response;
 });
 
-$app->get('/getData', function (Request $request, Response $response, $args) { 
+$app->get('/getData', function (Request $request, Response $response, $args) {
   $database = new Database;
 
   //Veritabanına bağlantı kontrolü yapıyoruz. Hata varsa yazdırıyoruz
@@ -98,7 +99,7 @@ $app->get('/getData', function (Request $request, Response $response, $args) {
     die("Veritabanına bağlanamadı: " . $e->getMessage());
   }
 
-  $sql = 'SELECT  users.username,posts.title, posts.body  FROM posts INNER JOIN users ON posts.userId =users.id';
+  $sql = 'SELECT  users.username,posts.title, posts.body,posts.id  FROM posts INNER JOIN users ON posts.userId =users.id';
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
