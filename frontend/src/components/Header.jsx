@@ -5,21 +5,26 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CodeIcon from "@mui/icons-material/Code";
+import PhpIcon from "@mui/icons-material/Php";
+import JavascriptIcon from "@mui/icons-material/Javascript";
+import { Avatar } from "@mui/material";
 const Header = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
-          <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          <Avatar alt="Ahmet Burak Çetin" src="ahmt.png" />
           <Typography
-            variant="h6"
+            // variant="h6"
             noWrap
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              ml: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "BlinkMacSystemFont",
+              fontSize: '18px',
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -27,7 +32,6 @@ const Header = () => {
             }}
           >
             Ahmet Burak Çetin
-            
           </Typography>
 
           <Box
@@ -38,7 +42,25 @@ const Header = () => {
               display: { md: "flex" },
             }}
           >
-            Aesthetic Coding
+            <JavascriptIcon fontSize="large" />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              // href="/"
+              sx={{
+                // mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "BlinkMacSystemFont",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              &
+            </Typography>
+            <PhpIcon fontSize="large" />
           </Box>
         </Toolbar>
       </Container>
