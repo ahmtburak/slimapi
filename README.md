@@ -11,6 +11,10 @@ Eğer aynı id'ye sahip gönderiler gelirse mevcut olan veri ve eklenen veriyi y
 <br>
 <br>
 Controller ve Modal sistemi kullanarak kodların daha düzenli olmasını sağladım.
+<br>
+### Conroller, Modal ve Index
+<br>
+<br>
 <img src="https://i.hizliresim.com/l6gxct2.png">
 
 ## Frontend
