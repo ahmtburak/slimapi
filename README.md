@@ -12,9 +12,9 @@ Merhaba, uygulamamızın ana sayfası açıldığında bu şekilde gözüküyor.
 Eğer aynı id'ye sahip gönderiler gelirse mevcut olan veri ve eklenen veriyi yazdırıyor. 2 API için de bu kontrolü sağlıyorum.
 <br>
 <br>
-Controller ve Modal sistemi kullanarak kodların daha düzenli olmasını sağladım.
+Controller ve Model sistemi kullanarak kodların daha düzenli olmasını sağladım.
 <br>
-### Conroller, Modal ve Index
+### Conroller, Model ve Index
 <br>
 <img src="https://i.hizliresim.com/l6gxct2.png">
 
